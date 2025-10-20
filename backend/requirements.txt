@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+sentence-transformers
+google-generativeai
+requests  # For tools.py

@@ -129,24 +129,24 @@ const ChatBox = () => {
 
       {/* Health Check */}
       <div className="health-check">
-        <button
-          onClick={async () => {
-            try {
-              const res = await fetch(
-                process.env.NODE_ENV === "development"
-                  ? "/health"
-                  : "http://127.0.0.1:8000/health"
-              );
-              console.log("[DEBUG] Health check:", await res.text());
-              alert("✅ Backend is healthy!");
-            } catch (e) {
-              console.error("[DEBUG] Health check failed:", e);
-              alert("⚠️ Backend check failed — check console.");
-            }
-          }}
-        >
-          🔍 Test Backend Health
-        </button>
+       <button
+  onClick={async () => {
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+      const res = await fetch(`${API_URL}/health`);
+      const text = await res.text();
+
+      console.log("[DEBUG] Health check:", text);
+      alert("✅ Backend is healthy!");
+    } catch (e) {
+      console.error("[DEBUG] Health check failed:", e);
+      alert("⚠️ Backend check failed — see console for details.");
+    }
+  }}
+>
+  🔍 Test Backend Health
+</button>
+
       </div>
 
       <style>{`
